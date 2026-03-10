@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Happy Birthday</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family: Arial;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff758c,#ff7eb3);
+    overflow:hidden;
+}
+
+/* Birthday Card */
+
+.card{
+    background:white;
+    padding:40px;
+    text-align:center;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    animation: float 3s infinite ease-in-out;
+}
+
+@keyframes float{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-10px);}
+    100%{transform:translateY(0);}
+}
+
+h1{
+    color:#ff4081;
+}
+
+button{
+    padding:12px 25px;
+    border:none;
+    border-radius:25px;
+    background:#ff4081;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#e91e63;
+}
+
+/* Popup */
+
+.popup{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    display:none;
+    justify-content:center;
+    align-items:center;
+}
+
+.popup-content{
+    background:white;
+    padding:40px;
+    border-radius:15px;
+    text-align:center;
+    animation:zoom 0.5s;
+}
+
+@keyframes zoom{
+    from{transform:scale(0);}
+    to{transform:scale(1);}
+}
+
+/* Confetti */
+
+.confetti{
+    position:absolute;
+    width:10px;
+    height:10px;
+    background:red;
+    top:-10px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(100vh) rotate(360deg);
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="card">
+<h1>🎂 Happy Birthday 🎉</h1>
+<p>Click the button for a surprise!</p>
+<button onclick="showWish()">Open Wish</button>
+</div>
+
+
+<div class="popup" id="popup">
+<div class="popup-content">
+<h1>🎉 Happy Birthday! 🎉</h1>
+<p>May your day be filled with happiness, success and lots of cake! 🎂</p>
+<button onclick="closeWish()">Close</button>
+</div>
+</div>
+
+
+<script>
+
+function showWish(){
+    document.getElementById("popup").style.display="flex";
+    startConfetti();
+}
+
+function closeWish(){
+    document.getElementById("popup").style.display="none";
+}
+
+function startConfetti(){
+
+for(let i=0;i<100;i++){
+
+let conf=document.createElement("div");
+conf.classList.add("confetti");
+
+conf.style.left=Math.random()*100+"vw";
+conf.style.background="hsl("+Math.random()*360+"deg,100%,50%)";
+conf.style.animationDuration=(Math.random()*3+2)+"s";
+
+document.body.appendChild(conf);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
